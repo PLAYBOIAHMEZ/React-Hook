@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 const MovieCard = ({ movie }) => {
@@ -7,8 +8,10 @@ const MovieCard = ({ movie }) => {
       <Card.Img variant="top" src={movie.posterURL} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.description}</Card.Text>
-        <Card.Text>⭐ {movie.rating}</Card.Text>
+        <Card.Text>Rating: {movie.rating}</Card.Text>
+        <Link to={`/movie/${movie.id}`} className="btn btn-primary">
+          View Details
+        </Link>
       </Card.Body>
     </Card>
   );

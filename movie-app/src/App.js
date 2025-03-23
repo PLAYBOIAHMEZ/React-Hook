@@ -1,35 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import MovieList from "./components/MovieList";
-import Filter from "./components/Filter";
-import AddMovie from "./components/AddMovie";
-import moviesData from "./movies";
 
-function App() {
-  const [movies, setMovies] = useState(moviesData);
-  const [searchTitle, setSearchTitle] = useState("");
-  const [searchRating, setSearchRating] = useState(0);
+import MovieDetail from "./MovieDetail";
 
-  const addMovie = (newMovie) => {
-    setMovies([...movies, newMovie]);
-  };
-
-  const filteredMovies = movies.filter(
-    (movie) =>
-      movie.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
-      movie.rating >= searchRating
-  );
-
+const App = () => {
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>Movie App 🎬</h1>
-      <Filter
-        setSearchTitle={setSearchTitle}
-        setSearchRating={setSearchRating}
-      />
-      <AddMovie addMovie={addMovie} />
-      <MovieList movies={filteredMovies} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MovieList />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
